@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask ML App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('static/IMG/background_flower.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #333;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+            max-width: 600px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .btn-primary {
+            background-color:  #080808;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #007bff;
+            border-color: #080808;
+        }
+        .prediction {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .flower-image {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>FloraPredict</h1>
+        <form method="POST">
+            <div class="form-group">
+                <label for="SepalLength">Sepal Length:</label>
+                <input type="text" class="form-control" id="SepalLength" name="SepalLength" required>
+            </div>
+            <div class="form-group">
+                <label for="SepalWidth">Sepal Width:</label>
+                <input type="text" class="form-control" id="SepalWidth" name="SepalWidth" required>
+            </div>
+            <div class="form-group">
+                <label for="PetalLength">Petal Length:</label>
+                <input type="text" class="form-control" id="PetalLength" name="PetalLength" required>
+            </div>
+            <div class="form-group">
+                <label for="PetalWidth">Petal Width:</label>
+                <input type="text" class="form-control" id="PetalWidth" name="PetalWidth" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Predict</button>
+        </form>
+        
+        {% if prediction %}
+        <div class="prediction">
+            <p>Predicted Flower: {{ prediction }}</p>
+            {% if image %}
+            <img src="{{ image }}" class="flower-image" alt="Flower Image">
+            {% endif %}
+        </div>
+        {% endif %}
+        
+    </div>
+</body>
+</html>
